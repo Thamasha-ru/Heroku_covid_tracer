@@ -7,7 +7,7 @@ users = {
     1: {
         "name": "john",
         "age": 17,
-        "class": "Year 12"
+        "height": "165cm"
     }
 
 }
@@ -16,13 +16,13 @@ users = {
 class user(BaseModel):
     name: str
     age: int
-    year: str
+    height: str
 
 
 class Updateuser(BaseModel):
     name: Optional[str] = None
     age: Optional[int] = None
-    year: Optional[str] = None
+    height: Optional[str] = None
 
 
 @app.get("/")
@@ -64,7 +64,7 @@ def update_user(user_id: int, user: Updateuser):
         users[user_id].age = user.age
 
     if user.year != None:
-        users[user_id].year = user.year
+        users[user_id].height = user.height
 
     return users[user_id]
 
