@@ -7,7 +7,9 @@ users = {
     1: {
         "name": "john",
         "age": 17,
-        "height": "165cm"
+        "height": "165cm",
+        "weight": "50kg",
+        "bloodGroup" : "B+"
     }
 
 }
@@ -17,12 +19,16 @@ class user(BaseModel):
     name: str
     age: int
     height: str
+    weight: str
+    bloodGroup: str
 
 
 class Updateuser(BaseModel):
     name: Optional[str] = None
     age: Optional[int] = None
     height: Optional[str] = None
+    weight: Optional[str] = None
+    bloodGroup: Optional[str] = None
 
 
 @app.get("/")
@@ -63,8 +69,14 @@ def update_user(user_id: int, user: Updateuser):
     if user.age != None:
         users[user_id].age = user.age
 
-    if user.year != None:
+    if user.height != None:
         users[user_id].height = user.height
+
+    if user.weight !=None:
+        users[user_id].weight = user.weight
+
+    if user.bloodGroup !=None:
+        users[user_id].bloodGroup = user.bloodGroup
 
     return users[user_id]
 
